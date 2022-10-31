@@ -1,1 +1,5 @@
-# go-swagger-tutorial
+# 目的
+
+- 下記技術を使い、スキーマ駆動開発の流れを掴む。
+  - Go
+  - Swagger
