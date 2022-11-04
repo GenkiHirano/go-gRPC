@@ -1,4 +1,4 @@
-module github.com/GenkiHirano/go-gRPC-training
+module github.com/GenkiHirano/go-gRPC
 
 go 1.19
 
