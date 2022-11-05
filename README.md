@@ -11,3 +11,9 @@ protoc --go_out=../gen/grpc --go_opt=paths=source_relative \
         --go-grpc_out=../gen/grpc --go-grpc_opt=paths=source_relative \
         hello.proto
 ```
+
+# gRPC 実行コマンド
+
+```
+grpcurl -plaintext -d '{"name": "hsaki"}' localhost:8080 myapp.GreetingService.Hello
+```
