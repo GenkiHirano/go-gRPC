@@ -19,7 +19,7 @@ const (
 )
 
 func main() {
-	listener, err  := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		panic(err)
 	}
