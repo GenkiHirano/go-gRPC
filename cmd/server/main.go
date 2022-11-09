@@ -13,8 +13,11 @@ import (
 
 	hellopb "github.com/GenkiHirano/go-gRPC/gen/grpc"
 
+	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/grpc/status"
 )
 
 const (
@@ -54,9 +57,14 @@ type myServer struct {
 
 // Hello: Unary RPCがレスポンスを返す
 func (m *myServer) Hello(ctx context.Context, req *hellopb.HelloRequest) (*hellopb.HelloResponse, error) {
+	stat := status.New(codes.Unknown, "unknown error occurred")
+	stat, _ = stat.WithDetails(&errdetails.DebugInfo{
+		Detail: "detail reason of err",
+	})
+	err := stat.Err()
 	return &hellopb.HelloResponse{
 		Message: fmt.Sprintf("Hello, %s!", req.GetName()),
-	}, nil
+	}, err
 }
 
 // HelloServerStream: Server Stream RPCがレスポンスを返す
