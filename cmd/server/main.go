@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"context"
@@ -30,7 +30,23 @@ func main() {
 		panic(err)
 	}
 
-	s := grpc.NewServer()
+	s := grpc.NewServer(
+		// Unary RPC のインターセプタ
+		// grpc.UnaryInterceptor(myUnaryServerInterceptor1),
+
+		// grpc.ChainUnaryInterceptor(
+		// 	myUnaryServerInterceptor1,
+		// 	myUnaryServerInterceptor2,
+		// ),
+
+		// Stream RPC のインターセプタ
+		// grpc.StreamInterceptor(myStreamServerInterceptor1),
+		grpc.ChainStreamInterceptor(
+			myStreamServerInterceptor1,
+			myStreamServerInterceptor2,
+		),
+	)
+
 	hellopb.RegisterGreetingServiceServer(s, NewMyServer())
 	reflection.Register(s)
 
