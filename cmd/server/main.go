@@ -34,6 +34,7 @@ func main() {
 		// Unary RPC のインターセプタ
 		grpc.UnaryInterceptor(myUnaryServerInterceptor1),
 
+		// 複数の場合
 		// grpc.ChainUnaryInterceptor(
 		// 	myUnaryServerInterceptor1,
 		// 	myUnaryServerInterceptor2,
@@ -42,6 +43,7 @@ func main() {
 		// Stream RPC のインターセプタ
 		// grpc.StreamInterceptor(myStreamServerInterceptor1),
 
+		// 複数の場合
 		// grpc.ChainStreamInterceptor(
 		// 	myStreamServerInterceptor1,
 		// 	myStreamServerInterceptor2,
