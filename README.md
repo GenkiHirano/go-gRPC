@@ -1,11 +1,15 @@
 # 目的
 
-- 下記技術を使い、スキーマ駆動開発を理解する。
-  - Go
-  - gRPC
+- スキーマ駆動開発と gRPC の理解を深める。
 
-# gRPC 実行コマンド
+# 実装した機能一覧
 
-```
-grpcurl -plaintext -d '{"name": "hsaki"}' localhost:8080 myapp.GreetingService.Hello
-```
+- Go で下記 RPC の実装
+  - Unary RPC
+  - Server streaming RPC
+  - Client streaming RPC
+  - Bidirectional streaming RPC
+- gRPC のステータスコードを使ってエラーログの実装
+- インターセプタの実装
+  - Server
+  - Client
