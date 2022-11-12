@@ -34,8 +34,20 @@ func main() {
 		// Unary RPCのインターセプタ
 		// grpc.WithUnaryInterceptor(myUnaryClientInteceptor1),
 
+		// 複数の場合
+		// grpc.WithChainUnaryInterceptor(
+		// 	myUnaryClientInteceptor1,
+		// 	myUnaryClientInteceptor2,
+		// ),
+
 		// Stream RPCのインターセプタ
 		grpc.WithStreamInterceptor(myStreamClientInteceptor1),
+
+		// 複数の場合
+		// grpc.WithChainStreamInterceptor(
+		// 	myStreamClientInteceptor1,
+		// 	myStreamClientInteceptor2,
+		// ),
 
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithBlock(),
