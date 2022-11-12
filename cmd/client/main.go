@@ -31,7 +31,11 @@ func main() {
 	address := "localhost:8080"
 	conn, err := grpc.Dial(
 		address,
-		grpc.WithUnaryInterceptor(myUnaryClientInteceptor1),
+		// Unary RPCのインターセプタ
+		// grpc.WithUnaryInterceptor(myUnaryClientInteceptor1),
+
+		// Stream RPCのインターセプタ
+		grpc.WithStreamInterceptor(myStreamClientInteceptor1),
 
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithBlock(),

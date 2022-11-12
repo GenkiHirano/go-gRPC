@@ -4,7 +4,7 @@
 
 # 実装した機能一覧
 
-- Go で下記 RPC の実装
+- Go で下記 RPC を用いた Hello 関数の実装
   - Unary RPC
   - Server streaming RPC
   - Client streaming RPC
