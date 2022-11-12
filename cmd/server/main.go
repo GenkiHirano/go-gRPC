@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"context"
@@ -32,7 +32,7 @@ func main() {
 
 	s := grpc.NewServer(
 		// Unary RPC のインターセプタ
-		// grpc.UnaryInterceptor(myUnaryServerInterceptor1),
+		grpc.UnaryInterceptor(myUnaryServerInterceptor1),
 
 		// grpc.ChainUnaryInterceptor(
 		// 	myUnaryServerInterceptor1,
@@ -41,10 +41,11 @@ func main() {
 
 		// Stream RPC のインターセプタ
 		// grpc.StreamInterceptor(myStreamServerInterceptor1),
-		grpc.ChainStreamInterceptor(
-			myStreamServerInterceptor1,
-			myStreamServerInterceptor2,
-		),
+
+		// grpc.ChainStreamInterceptor(
+		// 	myStreamServerInterceptor1,
+		// 	myStreamServerInterceptor2,
+		// ),
 	)
 
 	hellopb.RegisterGreetingServiceServer(s, NewMyServer())
