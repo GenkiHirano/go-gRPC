@@ -16,6 +16,7 @@ import (
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 )
@@ -76,6 +77,10 @@ type myServer struct {
 
 // Hello: Unary RPCがレスポンスを返す
 func (m *myServer) Hello(ctx context.Context, req *hellopb.HelloRequest) (*hellopb.HelloResponse, error) {
+	if md, ok := metadata.FromIncomingContext(ctx); ok {
+		log.Println(md)
+	}
+
 	stat := status.New(codes.Unknown, "unknown error occurred")
 	stat, _ = stat.WithDetails(&errdetails.DebugInfo{
 		Detail: "detail reason of err",
@@ -120,6 +125,10 @@ func (m *myServer) HelloClientStream(stream hellopb.GreetingService_HelloClientS
 
 // HelloBiStreams: 双方向ストリーミングの実装
 func (m *myServer) HelloBiStreams(stream hellopb.GreetingService_HelloBiStreamsServer) error {
+	if md, ok := metadata.FromIncomingContext(stream.Context()); ok {
+		log.Println(md)
+	}
+
 	for {
 		// リクエスト受信
 		req, err := stream.Recv()
