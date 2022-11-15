@@ -14,3 +14,4 @@
   - Server
   - Client
 - メタデータの付与
+- gRPC と GO の並行処理
